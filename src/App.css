@@ -1,38 +1,87 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-flow: column wrap;
+  margin: auto;
+  border-radius: 20px;
+  border: 1px solid black;
+  width: 900px;
+}
+
+.preview-button {
+  margin: 15px 250px;
+  padding: 15px 0;
+  font-size: 24px;
+  border-radius: 0;
+  background-color: #d62539;
+  border-color: #d62539;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+button {
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.box {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: baseline;
+  margin: 15px 55px;
+}
+.box-item {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+}
+label,
+input,
+select {
+  margin: 4px;
+  font-size: 18px;
+}
+input,
+select {
+  transition: color 0.1s ease, border-color 0.1s ease;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+}
+input:focus {
+  color: rgba(0, 0, 0, 0.95);
+  border-color: #85b7d9;
+  border-radius: 0.28571429rem;
+  background: #fff;
+  -webkit-box-shadow: 0 0 0 0 rgb(34 36 38 / 35%) inset;
+  box-shadow: 0 0 0 0 rgb(34 36 38 / 35%) inset;
+  outline: none;
+}
+.add {
+  outline: none;
+  border: none;
+  padding: 6px 10px;
+  font-size: 17px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  background-color: #d62539;
+  border-color: #d62539;
+  color: white;
+}
+select {
+  padding: 1px 18px;
+}
+label {
+  margin: 6px;
+}
+
+.exp-item {
+  background-color: rgb(223, 223, 223);
+  margin: 10px 150px;
+  padding: 8px 0;
+  border-radius: 6px;
 }
