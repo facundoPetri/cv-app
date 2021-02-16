@@ -9,7 +9,7 @@ const Preview = (props) => {
         <p>School: {item.school}</p>
         <p>Title: {item.title}</p>
         <p>Date: {item.date}</p>
-        <button className="add" onClick={(e) => props.remove(id, "educationArray", e)}>Delete</button>
+        <button className="add" onClick={() => props.removeEducation(id)}>Delete</button>
       </div>
     );
   });
@@ -21,7 +21,7 @@ const Preview = (props) => {
         <p>Position: {item.position}</p>
         <p>Main Tasks: {item.main}</p>
         <p>Date: {item.date}</p>
-        <button className="add" onClick={(e) => props.remove(id, "experienceArray", e)}>Delete</button>
+        <button className="add" onClick={() => props.removeExperience(id)}>Delete</button>
       </div>
     );
   });

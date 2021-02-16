@@ -17,33 +17,33 @@ const General = (props) => {
             type="text"
             name="firstName"
             value={firstName}
-            onChange={(e) => props.handleChange("general", e)}
+            onChange={(e) => props.handleChange(props.setGeneralInfo.setData, props.setGeneralInfo.general, e)}
           />
           <input
             type="text"
             name="lastName"
             value={lastName}
-            onChange={(e) => props.handleChange("general", e)}
+            onChange={(e) => props.handleChange(props.setGeneralInfo.setData, props.setGeneralInfo.general, e)}
           />
           <input
             type="number"
             name="phone"
             value={phone}
-            onChange={(e) => props.handleChange("general", e)}
+            onChange={(e) => props.handleChange(props.setGeneralInfo.setData, props.setGeneralInfo.general, e)}
           />
           <input
             type="email"
             name="email"
             value={email}
-            onChange={(e) => props.handleChange("general", e)}
+            onChange={(e) => props.handleChange(props.setGeneralInfo.setData, props.setGeneralInfo.general, e)}
           />
           <input
             type="number"
             name="age"
             value={age}
-            onChange={(e) => props.handleChange("general", e)}
+            onChange={(e) => props.handleChange(props.setGeneralInfo.setData, props.setGeneralInfo.general, e)}
           />
-          <select name="city" value={city} onChange={(e) => props.handleChange("general", e)}>
+          <select name="city" value={city} onChange={(e) => props.handleChange(props.setGeneralInfo.setData, props.setGeneralInfo.general, e)}>
             <option value="cordoba">Cordoba</option>
             <option value="buenos aires">Buenos Aires</option>
             <option value="rosario">Rosario</option>

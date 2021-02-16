@@ -14,34 +14,34 @@ const Experience = (props) => {
         </div>
       <form
         className="box-item"
-        onSubmit={(e) => props.handleSubmit("experience", e)}
+        onSubmit={props.handleSubmit}
       >
         <input
           type="text"
           name="company"
           value={company}
-          onChange={(e) => props.handleChange("experience", e)}
+          onChange={props.handleChange}
         />
 
         <input
           type="text"
           name="position"
           value={position}
-          onChange={(e) => props.handleChange("experience", e)}
+          onChange={props.handleChange}
         />
 
         <input
           type="text"
           name="main"
           value={main}
-          onChange={(e) => props.handleChange("experience", e)}
+          onChange={props.handleChange}
         />
 
         <input
           type="date"
           name="date"
           value={date}
-          onChange={(e) => props.handleChange("experience", e)}
+          onChange={props.handleChange}
         />
 
         <button className="add">Add</button>

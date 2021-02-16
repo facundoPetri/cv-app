@@ -1,152 +1,132 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import General from "./components/General";
 import Education from "./components/Education";
 import Experience from "./components/Experience";
 import Preview from "./components/Preview";
 
-class App extends Component {
-  constructor() {
-    super();
+function App() {
+  const [generalInfo, setGeneralInfo] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    age: "",
+    city: "buenos aires",
+  });
 
-    this.state = {
-      general: {
-        firstName: "",
-        lastName: "",
-        phone: "",
-        email: "",
-        age: "",
-        city: "buenos aires",
-      },
-      education: {
-        school: "",
-        title: "",
-        date: "",
-      },
-      educationArray: [],
-      experience: {
-        company: "",
-        position: "",
-        main: "",
-        date: "",
-      },
-      experienceArray: [],
-      preview: true,
-    };
+  const [education, setEducation] = useState({
+    school: "",
+    title: "",
+    date: "",
+  });
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    this.removeItem = this.removeItem.bind(this)
-  }
+  const [educationArray, setEducationArray] = useState([]);
 
-  handleSubmit(section, event) {
+  const [experience, setExperience] = useState({
+    company: "",
+    position: "",
+    main: "",
+    date: "",
+  });
+
+  const [experienceArray, setExperienceArray] = useState([]);
+
+  const [preview, setPreview] = useState(true);
+
+  const handleEducationSubmit = (event) => {
     event.preventDefault();
-    this.setState((prevState) => {
-      if (section === "education") {
-        return {
-          ...prevState,
-          education: {
-            school: "",
-            title: "",
-            date: "",
-          },
-          educationArray: [
-            ...prevState.educationArray,
-            {
-              school: this.state.education.school,
-              title: this.state.education.title,
-              date: this.state.education.date,
-            },
-          ],
-        };
-      }
-      return {
-        ...prevState,
-        experience: {
-          company: "",
-          position: "",
-          main: "",
-          date: "",
-        },
-        experienceArray: [
-          ...prevState.experienceArray,
-          {
-            company: this.state.experience.company,
-            position: this.state.experience.position,
-            main: this.state.experience.main,
-            date: this.state.experience.date,
-          },
-        ],
-      };
+    setEducationArray([
+      ...educationArray,
+      {
+        school: education.school,
+        title: education.title,
+        date: education.date,
+      },
+    ]);
+    setEducation({
+      school: "",
+      title: "",
+      date: "",
     });
-  }
+  };
 
-  handleChange(section, event) {
+  const handleExperienceSubmit = (event) => {
+    event.preventDefault();
+    setExperienceArray([
+      ...experienceArray,
+      {
+        company: experience.company,
+        position: experience.position,
+        main: experience.main,
+        date: experience.date,
+      },
+    ]);
+    setExperience({ company: "", position: "", main: "", date: "" });
+  };
+
+  const removeEducationItem = (idd) => {
+    setEducationArray(educationArray.filter((item, id) => id !== idd));
+  };
+
+  const removeExperienceItem = (idd) => {
+    setExperienceArray(experienceArray.filter((item, id) => id !== idd));
+  };
+
+  const handleEducationChange = (event) => {
     const { name, value } = event.target;
-    this.setState((prevState) => {
-      return {
-        ...prevState,
-        [section]: { ...prevState[section], [name]: value },
-      };
-    });
-  }
+    setEducation({ ...education, [name]: value });
+  };
 
-  removeItem(idd, section, event){
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        [section]: prevState[section].filter((item, id) => id !== idd)
-      }
-    })
-  }
+  const handleExperienceChange = (event) => {
+    const { name, value } = event.target;
+    setExperience({ ...experience, [name]: value });
+  };
 
-  handleClick() {
-    this.setState((prevState) => {
-      return {
-        ...prevState,
-        preview: !prevState.preview,
-      };
-    });
-  }
+  const handleDataChange = (setData, data, event) => {
+    const { name, value } = event.target;
+    setData({ ...data, [name]: value });
+  };
 
-  render() {
-    const { handleChange, handleSubmit, handleClick, removeItem } = this;
-    const previewText = this.state.preview ? "Preview" : "Edit";
-    return (
-      <div className="App">
-        <h1>CV App</h1>
-        {this.state.preview && (
-          <div>
-            <General general={this.state.general} handleChange={handleChange} />
-            <Education
-              education={this.state.education}
-              handleChange={handleChange}
-              handleSubmit={handleSubmit}
-            />
-            <Experience
-              experience={this.state.experience}
-              handleChange={handleChange}
-              handleSubmit={handleSubmit}
-            />
-          </div>
-        )}
-
-        {!this.state.preview && (
-          <Preview
-            general={this.state.general}
-            education={this.state.educationArray}
-            experience={this.state.experienceArray}
-            remove={removeItem}
+  const previewText = preview ? "Preview" : "Edit";
+  return (
+    <div className="App">
+      <h1>CV App</h1>
+      {preview && (
+        <div>
+          <General
+            general={generalInfo}
+            handleChange={handleDataChange}
+            setGeneralInfo={{ setData: setGeneralInfo, general: generalInfo }}
           />
-        )}
+          <Education
+            education={education}
+            handleChange={handleEducationChange}
+            handleSubmit={handleEducationSubmit}
+          />
+          <Experience
+            experience={experience}
+            handleChange={handleExperienceChange}
+            handleSubmit={handleExperienceSubmit}
+          />
+        </div>
+      )}
 
-        <button className="preview-button" onClick={handleClick}>
-          {previewText}
-        </button>
+      {!preview && (
+        <Preview
+          general={generalInfo}
+          education={educationArray}
+          experience={experienceArray}
+          removeEducation={removeEducationItem}
+          removeExperience={removeExperienceItem}
+        />
+      )}
 
-      </div>
-    );
-  }
+      <button className="preview-button" onClick={() => setPreview(!preview)}>
+        {previewText}
+      </button>
+    </div>
+  );
 }
+
 export default App;

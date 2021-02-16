@@ -13,27 +13,27 @@ const Education = (props) => {
         </div>
         <form
           className="box-item"
-          onSubmit={(e) => props.handleSubmit("education", e)}
+          onSubmit={props.handleSubmit}
         >
           <input
             type="text"
             name="school"
             value={school}
-            onChange={(e) => props.handleChange("education", e)}
+            onChange={props.handleChange}
           />
 
           <input
             type="text"
             name="title"
             value={title}
-            onChange={(e) => props.handleChange("education", e)}
+            onChange={props.handleChange}
           />
 
           <input
             type="date"
             name="date"
             value={date}
-            onChange={(e) => props.handleChange("education", e)}
+            onChange={props.handleChange}
           />
 
           <button className="add">Add</button>
